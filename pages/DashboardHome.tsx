@@ -36,12 +36,15 @@ const DashboardHome: React.FC<DashboardHomeProps> = ({ data, profiles, isDarkMod
   const savingsRate = ((savings / totalIncome) * 100).toFixed(1);
 
   useEffect(() => {
+    console.log("DashboardHome component rendered");
     const randomQuote = FINANCIAL_QUOTES[Math.floor(Math.random() * FINANCIAL_QUOTES.length)];
     setQuote(randomQuote);
 
     const fetchAdvice = async () => {
+      console.log("Fetching financial advice...");
       const summary = { totalIncome, totalExpense, savings, savingsRate };
       const result = await getFinancialAdvice(summary);
+      console.log("Financial advice received:", result);
       setAdvice(result);
     };
     fetchAdvice();
